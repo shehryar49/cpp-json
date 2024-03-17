@@ -7,7 +7,6 @@
 #define JSON_PARSER_H_
 
 
-class JSON;
 
 JsonObject* loads(const std::string&);  
 std::string dumps(const JsonObject&);

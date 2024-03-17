@@ -221,7 +221,8 @@ vector<JsonToken> tokenize(const string& str,bool& hadErr,string& msg)
     ;
     else
     {
-       msg = "Unknown character";
+       msg = "Unknown character ";
+       msg += c;
        return tokens;
     }
     i+=1;
@@ -510,8 +511,7 @@ string dumps(const JsonObject& json)
   string res;
   std::unordered_map<void*,bool> seen;
   JsonValue tmp(json);
-  cout << tmp.ptr << endl;
-  cout << (&json) << endl;
+
 //  tmp.ptr = (void*)&json;
  // tmp.type = JsonValueType::OBJ;
   JObjToStr(tmp,res,seen);

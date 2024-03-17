@@ -123,13 +123,13 @@ JsonValue::JsonValue(const JsonValue& rhs)
     case JsonValueType::ARRAY:
     {
       JsonArray* p = new JsonArray(*(JsonArray*)rhs.ptr);
-      this->ptr = (void*)ptr;
+      this->ptr = (void*)p;
       break;
     }
     case JsonValueType::OBJ:
     {
       JsonObject* p = new JsonObject(*(JsonObject*)rhs.ptr);
-      this->ptr = (void*)ptr;
+      this->ptr = (void*)p;
       break;
     }    
   }
@@ -175,13 +175,13 @@ JsonValue& JsonValue::operator=(const JsonValue& rhs)
     case JsonValueType::ARRAY:
     {
       JsonArray* p = new JsonArray(*(JsonArray*)rhs.ptr);
-      this->ptr = (void*)ptr;
+      this->ptr = (void*)p;
       break;
     }
     case JsonValueType::OBJ:
     {
       JsonObject* p = new JsonObject(*(JsonObject*)rhs.ptr);
-      this->ptr = (void*)ptr;
+      this->ptr = (void*)p;
       break;
     }    
   }
@@ -220,9 +220,10 @@ JsonValue::JsonValue(vector<JsonValue>* arr)
 }
 JsonValue::JsonValue(const JsonObject& obj)
 {
+
   JsonObject* p = new JsonObject(obj);
   type = JsonValueType::OBJ;
-  ptr = (void*)p;
+  this->ptr = (void*)p;
 }
 JsonValue::JsonValue(const JsonArray& arr)
 {
@@ -232,12 +233,14 @@ JsonValue::JsonValue(const JsonArray& arr)
 }
 JsonValue::~JsonValue()
 {
+  
   if(type == JsonValueType::ARRAY)
     delete (JsonArray*)ptr;
   else if(type == JsonValueType::STR)
     delete (std::string*)ptr;
   else if(type == JsonValueType::OBJ)
     delete (JsonObject*)ptr;
+  
 }
 
 ostream& operator<<(ostream& out,const JsonValue& val)
