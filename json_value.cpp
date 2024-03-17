@@ -42,7 +42,7 @@ JsonValue& JsonValue::operator[](size_t idx) // works if underlying type is json
 {
   static JsonValue null;
   null.type = JsonValueType::JSON_NULL;
-  if(this->type == JsonValueType::OBJ)
+  if(this->type == JsonValueType::ARRAY)
   {
     JsonArray* p = (JsonArray*)ptr;
     return (*p)[idx];
